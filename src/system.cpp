@@ -22,7 +22,6 @@ vector<Process>& System::Processes() {
 
     processes_.clear();
     vector<int> pids = LinuxParser::Pids();
-    //vector<Process> processes;
 
     for (int pid: pids)
     {
