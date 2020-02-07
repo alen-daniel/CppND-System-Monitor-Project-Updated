@@ -23,13 +23,13 @@ float Process::CpuUtilization() const {
 
 void Process::UpdateCpuUtilization()
 {
-    long current_cpu_usage_active = LinuxParser::ActiveJiffies(Pid());
-    long current_cpu_usage_idle = LinuxParser::IdleJiffies();
-    long cpu_usage_active_delta = current_cpu_usage_active - previous_cpu_usage_active_; 
-    long cpu_usage_idle_delta = current_cpu_usage_idle - previous_cpu_usage_idle_; 
+    float current_cpu_usage_active = static_cast<float>(LinuxParser::ActiveJiffies(Pid()));
+    float current_cpu_usage_idle = static_cast<float>(LinuxParser::IdleJiffies());
+    float cpu_usage_active_delta = current_cpu_usage_active - previous_cpu_usage_active_; 
+    float cpu_usage_idle_delta = current_cpu_usage_idle - previous_cpu_usage_idle_; 
     previous_cpu_usage_active_ = current_cpu_usage_active;
     previous_cpu_usage_idle_ = current_cpu_usage_idle;
-    cpu_active_ = (cpu_usage_active_delta)/(cpu_usage_idle_delta + cpu_usage_active_delta) * 1.0; 
+    cpu_active_ = (cpu_usage_active_delta)/(cpu_usage_idle_delta + cpu_usage_active_delta) * 100.0; 
 }
 
 // TODO: Return the command that generated this process
@@ -56,8 +56,4 @@ long int Process::UpTime() {
 // REMOVE: [[maybe_unused]] once you define the function
 bool Process::operator<(Process const& a) const {   
     return CpuUtilization() < a.CpuUtilization();
-}
-
-bool Process::operator>(const Process& a) const {
-  return CpuUtilization() > a.CpuUtilization();
 }

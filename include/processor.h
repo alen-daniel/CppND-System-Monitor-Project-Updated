@@ -7,7 +7,7 @@ public:
 
   // TODO: Declare any necessary private members
 private:
- long previous_cpu_usage_active_, previous_cpu_usage_idle_;
+    float previous_cpu_usage_active_{0.0}, previous_cpu_usage_idle_{0.0};
 };
 
 #endif
