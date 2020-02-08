@@ -28,13 +28,13 @@ vector<Process>& System::Processes() {
       processes_.push_back(Process(pid));
     }
 
-    for (Process process : processes_)
+    for (Process& process : processes_)
     {
       process.UpdateCpuUtilization();
     }
     
     std::sort(processes_.begin(), processes_.end());
-
+    std::reverse(processes_.begin(), processes_.end());
     return processes_;
 }
 
