@@ -29,7 +29,7 @@ void Process::UpdateCpuUtilization()
     float cpu_usage_idle_delta = current_cpu_usage_idle - previous_cpu_usage_idle_; 
     previous_cpu_usage_active_ = current_cpu_usage_active;
     previous_cpu_usage_idle_ = current_cpu_usage_idle;
-    cpu_active_ = (cpu_usage_active_delta)/(cpu_usage_idle_delta + cpu_usage_active_delta) * 100.0; 
+    cpu_active_ = (cpu_usage_active_delta)/(cpu_usage_idle_delta + cpu_usage_active_delta); 
 }
 
 // TODO: Return the command that generated this process
