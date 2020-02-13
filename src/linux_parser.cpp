@@ -142,15 +142,14 @@ long LinuxParser::ActiveJiffies() {
     vector<string> utilizationTimes = CpuUtilization();
     long totalActiveJiffies = stol(utilizationTimes[CPUStates::kUser_]) + stol(utilizationTimes[CPUStates::kNice_]) +
       stol(utilizationTimes[CPUStates::kSystem_]) + stol(utilizationTimes[CPUStates::kIRQ_]) +
-      stol(utilizationTimes[CPUStates::kSoftIRQ_]) + stol(utilizationTimes[CPUStates::kSteal_]) +
-      stol(utilizationTimes[CPUStates::kGuest_]) + stol(utilizationTimes[CPUStates::kGuestNice_]);
+      stol(utilizationTimes[CPUStates::kSoftIRQ_]) + stol(utilizationTimes[CPUStates::kSteal_]);
   return totalActiveJiffies; 
 }
 
 // TODO: Read and return the number of idle jiffies for the system
 long LinuxParser::IdleJiffies() {
  vector<string> utilizationTimes = CpuUtilization();
- return stol(utilizationTimes[CPUStates::kIdle_]);
+ return stol(utilizationTimes[CPUStates::kIdle_]) +  stol(utilizationTimes[CPUStates::kIOwait_]);
  }
 
 // TODO: Read and return the total number of processes

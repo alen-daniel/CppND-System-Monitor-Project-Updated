@@ -33,8 +33,8 @@ vector<Process>& System::Processes() {
       process.UpdateCpuUtilization();
     }
     
-    std::sort(processes_.begin(), processes_.end());
-    std::reverse(processes_.begin(), processes_.end());
+    std::sort(processes_.begin(), processes_.end(), std::greater<Process>());
+    
     return processes_;
 }
 

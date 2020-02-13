@@ -1,5 +1,7 @@
 #include "processor.h"
+#include <thread>
 #include "linux_parser.h"
+#include <unistd.h>
 
 // TODO: Return the aggregate CPU utilization
 float Processor::Utilization() 
@@ -10,6 +12,6 @@ float Processor::Utilization()
     float cpu_usage_idle_delta = current_cpu_usage_idle - previous_cpu_usage_idle_; 
     previous_cpu_usage_active_ = current_cpu_usage_active;
     previous_cpu_usage_idle_ = current_cpu_usage_idle;
-
-    return cpu_usage_active_delta/(cpu_usage_idle_delta + cpu_usage_active_delta) * 1.0; 
+    
+    return cpu_usage_active_delta/(cpu_usage_idle_delta + cpu_usage_active_delta); 
 }
